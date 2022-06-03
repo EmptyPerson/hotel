@@ -1,7 +1,6 @@
 import React from 'react';
-import './About.css'
 import Gallery from './Gallery/Gallery'
-// gi
+import './About.scss'
 const About = () => {
 
     return (
