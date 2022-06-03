@@ -23,7 +23,6 @@ const Home = () => {
                 <h1 className='block-underText'>Добро пожаловать</h1>
                 {/*<h1 className='block-headText'>Прекрасное место для отдыха</h1>*/}
                 <p className='block-descriptionText'>{descriptionText}</p>
-
             </div>
 
         </div>

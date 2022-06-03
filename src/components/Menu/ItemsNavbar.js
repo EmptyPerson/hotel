@@ -4,10 +4,10 @@ import './Navbar.css'
 
 const ItemsNavbar = () => {
     const [ActiveRow, setActiveRow] = useState([
-        {id: 1, text: 'Home', activeF: false},
-        {id: 2, text: 'About', activeF: false},
-        {id: 3, text: 'Blog', activeF: false},
-        {id: 4, text: 'Contacts', activeF: false}
+        {id: 1, text: 'Главная', activeF: false, header: 'home'},
+        {id: 2, text: 'Галлерея', activeF: false, header: 'gallery'},
+        {id: 3, text: 'Бронирование', activeF: false, header: 'booking'},
+        {id: 4, text: 'Контакты', activeF: false, header: 'contacts'}
     ])
 
     const activate = (e) => {
@@ -24,7 +24,7 @@ const ItemsNavbar = () => {
         <div>
             {ActiveRow.map((item) => (
                 <li key={item.id}>
-                    <Link className={item.activeF ? "current": null} to={item.text.toLowerCase()} id={item.id} onClick={activate}>
+                    <Link className={item.activeF ? "current": null} to={item.header} id={item.id} onClick={activate}>
                         {item.text}
                     </Link>
 

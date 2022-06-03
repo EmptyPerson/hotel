@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.Button {
+ position: relative;
+ left: 30%;
+ top: 94px;
+ width: 540px;
+}
+.Button .st0 {
+ fill: #ed4956;
+}
+.Button .st1 {
+ fill: #d83d50;
+}
+.Button #button {
+ cursor: pointer;
+ pointer-events: all;
+}
+
+.Count {
+ position: absolute;
+ right: 160px;
+ top: 94px;
+ font-family: "Pacifico";
+ font-size: 72px;
+ color: white;
+ filter: drop-shadow(-3px 3px 0 #d83d50);
+ pointer-events: none;
+}
+
+.Heart {
+ position: absolute;
+ width: 80px;
+ left: 174px;
+ top: 130px;
+ filter: drop-shadow(-3px 3px 0 #d83d50);
+ pointer-events: none;
+}
+.Heart .st0 {
+ fill: white;
+}
+.Heart .st1 {
+ fill: #dbdbdb;
+}

@@ -5,7 +5,7 @@ import ItemsNavbar from "./ItemsNavbar";
 const Navbar = () => {
     // const [ActiveRow, setActiveRow] = useState([
     //     {id: 1, text: 'Home', activeF: false},
-    //     {id: 2, text: 'About', activeF: false},
+    //     {id: 2, text: 'LikeHeart', activeF: false},
     //     {id: 3, text: 'Blog', activeF: false},
     //     {id: 4, text: 'Contacts', activeF: false}
     // ])

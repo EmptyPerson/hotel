@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import './App.css'
 import About from "./components/About/About";
 import Footer from "./components/Footer/Footer";
+import Booking from "./components/Booking/Booking";
 
 function App() {
     return (
@@ -14,9 +15,9 @@ function App() {
                 <Navbar/>
                 <Routes>
                     <Route exact path='/home' element={<Home/>}/>
-
-                    <Route exact path='/about' element={<About/>}/>
-
+                    <Route exact path='/' element={<Home/>}/>
+                    <Route exact path='/gallery' element={<About/>}/>
+                    <Route exact path='/booking' element={<Booking/>}/>
                     <Route
                         path="*"
                         element={<Home/>}
@@ -24,7 +25,6 @@ function App() {
                 </Routes>
                 <Footer/>
             </BrowserRouter>
-
         </div>
     );
 }
