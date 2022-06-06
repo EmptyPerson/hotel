@@ -18,10 +18,8 @@ const Home = () => {
                 <p className='text-head'>Люксовая гостиница</p>
                 <p className='text-lower'>Чувствуй себя дома</p>
             </div>
-            <div className="block-description"> {/*className="block-description"*/}
-
+            <div className="block-description">
                 <h1 className='block-underText'>Добро пожаловать</h1>
-                {/*<h1 className='block-headText'>Прекрасное место для отдыха</h1>*/}
                 <p className='block-descriptionText'>{descriptionText}</p>
             </div>
 

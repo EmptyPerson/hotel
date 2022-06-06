@@ -5,7 +5,8 @@ import Home from "./components/Home/Home";
 import './App.css'
 import About from "./components/About/About";
 import Footer from "./components/Footer/Footer";
-import Booking from "./components/Booking/Booking";
+import Rooms from "./components/Rooms/Rooms";
+import Reservation from "./components/UI/Reservation/Reservation";
 
 function App() {
     return (
@@ -17,7 +18,8 @@ function App() {
                     <Route exact path='/home' element={<Home/>}/>
                     <Route exact path='/' element={<Home/>}/>
                     <Route exact path='/gallery' element={<About/>}/>
-                    <Route exact path='/booking' element={<Booking/>}/>
+                    <Route exact path='/rooms' element={<Rooms/>}/>
+                    <Route exact path='/booking' element={<Reservation/>}/>
                     <Route
                         path="*"
                         element={<Home/>}

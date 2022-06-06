@@ -1,17 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 
-* {
-    padding: 0;
-    margin: 0 auto;
 
-}
-/*body {*/
-/*    font-family: "Indie Flower", cursive;*/
-/*    background-color: #eee;*/
-/*    color: #555;*/
-/*    text-align: center;*/
-/*    padding: 4em 0;*/
-/*}*/
 
 .imgLoader {
     position: fixed;
@@ -60,18 +49,22 @@
         display: none;
     }
 }
-
 .container-booking {
+    top: 0;
+    left: 0;
+    width: 100%;
     position: relative;
-    width: 420px;
-    border: #fff solid 2px;
-    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+    background: #555555;
+}
+.booking {
+    position: relative;
+    width: 50%;
+    left: 25%;
     height: 420px;
     font-family: "Indie Flower", cursive;
     text-align: center;
-    padding: 4em 0;
-    background: #555555;
-    width: 100%;
 }
 
 .title-booking {
@@ -1047,17 +1040,4 @@
         background-position: -388px -2px;
         transform: rotateY(180deg);
     }
-}
-.twitterLink {
-    position: fixed;
-    bottom: 0.5em;
-    right: 0.5em;
-}
-.twitterLink img {
-    width: 2em;
-    filter: grayscale(100%);
-    transition: filter 0.25s;
-}
-.twitterLink img:hover {
-    filter: grayscale(0%);
 }
