@@ -5,7 +5,7 @@ import axios from "axios";
 import $ from "jquery"
 
 const APIurl = [
-    'https://api.formsubmits.com/forms/98cd273f-fc7f-46e2-a831-31e1169505c1/submit', 
+    'https://api.formsubmits.com/forms/98cd273f-fc7f-46e2-a831-31e1169505c1/submit',
     'https://api.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/submit'
 ]
 const CodeSuccessAPI = '6AlJaXhWRSrtHTUb'
@@ -39,6 +39,8 @@ const Reservation = () => {
         roomsNumber: [1, 2, 3, 4, 5, 6, 7],
         choseRoom: '1'
     })
+
+    const [validEmail, setValidEmail] = useState(false)
 
     const messageText = `Имя гостя: ${form.name}\n
                           Электронная почта: ${form.mail}\n
@@ -75,8 +77,8 @@ const Reservation = () => {
             async: false,
             dataType: 'html',
             data: message,
-            success:  function(data){
-               //$('.ajaxx').text(data)
+            success: function(data){
+
                 console.log(data);
                 if (data.indexOf(codeSuccess, 0) == -1 || data.toUpperCase().indexOf('ERROR', 0) != -1) {
                         console.log('something wrong with API server')
@@ -97,6 +99,55 @@ const Reservation = () => {
         return flagError;
     }
 
+    useEffect(() => {
+        const email = document.getElementById('mail');
+        const emailError = document.querySelector('#mail + span.error');
+
+        email.onchange = () => {
+            // Каждый раз, когда пользователь что-то вводит,
+            // мы проверяем, являются ли поля формы валидными
+
+            if (email.validity.valid) {
+                // Если на момент валидации какое-то сообщение об ошибке уже отображается,
+                // если поле валидно, удаляем сообщение
+                emailError.textContent = ''; // Сбросить содержимое сообщения
+                emailError.className = 'error'; // Сбросить визуальное состояние сообщения
+                setValidEmail(true)
+
+            } else {
+                setValidEmail(false)
+                console.log('NE valid')
+                showError();
+            }
+
+        }
+        // email.addEventListener('input', function () {
+        //     // Каждый раз, когда пользователь что-то вводит,
+        //     // мы проверяем, являются ли поля формы валидными
+        //
+        //     if (email.validity.valid) {
+        //         // Если на момент валидации какое-то сообщение об ошибке уже отображается,
+        //         // если поле валидно, удаляем сообщение
+        //         emailError.textContent = ''; // Сбросить содержимое сообщения
+        //         emailError.className = 'error'; // Сбросить визуальное состояние сообщения
+        //         console.log('valid')
+        //     } else {
+        //         console.log('NE valid')
+        //         showError();
+        //     }
+        // });
+
+        function showError() {
+            if(email.validity.typeMismatch) {
+                emailError.textContent = 'Введите корректный адрес электронной почты.';
+            }
+            // Задаём соответствующую стилизацию
+            emailError.className = 'error active';
+        }
+    });
+
+
+
     return (
         <div className='container-reservation'>
 
@@ -106,7 +157,7 @@ const Reservation = () => {
             {/*{ respons= firstForm.submit}*/}
             {/*{console.log(state)}*/}
             {/*{console.log(respons)}*/}
-            <form>
+            <form noValidate>
                 <h1>Имя</h1>
                 <input
                     value= {form.name}
@@ -125,11 +176,14 @@ const Reservation = () => {
                 />
                 <h1>Email</h1>
                 <input value= {form.mail}
+                       id="mail"
                        type="email"
                        placeholder="Email"
                        onChange={e => (
+
                            setForm({...form, mail: e.target.value}))}
                 />
+                <span className="error" aria-live="polite"></span>
                 <h1>Количество взрослых</h1>
                 <input value= {form.countAdults}
                        type="number"
@@ -172,11 +226,16 @@ const Reservation = () => {
                         >{room}</option>}
                     )}
                 </select>
-                <button onClick={
-                    async (e) => {
-                        e.preventDefault()
-                        if (form.name) {
-                            if (form.phone || form.mail) {
+
+            </form>
+            <button onClick={
+                async (e) => {
+                    e.preventDefault()
+                    if (form.name) {
+                        if (form.phone || form.mail) {
+                           //  let mail = $( "#mail" )
+                           // console.log(mail)
+                            if (form.phone || (form.mail && validEmail)) {
                                 for (let i = 0; i < APIurl.length; i++) {
                                     const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)
 
@@ -190,16 +249,16 @@ const Reservation = () => {
                                         secondForm.submit()
                                     }
                                 }
-                            } else {
-                                alert('Заполните телефон или Email')
                             }
                         } else {
-                            alert('Заполните имя')
+                            alert('Заполните телефон или Email')
                         }
+                    } else {
+                        alert('Заполните имя')
                     }
+                }
 
-                }>Подтвердить</button>
-            </form>
+            }>Подтвердить</button>
 
             <button onClick={async () => {
                 document.body.append(secondForm)
@@ -225,6 +284,14 @@ const Reservation = () => {
                     }
                }
             }>Test</button>
+
+            <button onClick={
+                (e) => {
+                    e.preventDefault()
+                   // Validation()
+                }
+
+            }>Valid</button>
         </div>
     );
 };
