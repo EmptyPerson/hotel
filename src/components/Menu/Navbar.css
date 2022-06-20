@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Smooch&display=swap');
 
 .menu-main {
+    position: absolute;
     list-style: none;
     padding: 0 30px;
     margin: 0;
     font-size: 18px;
     text-align: center;
-    position: relative;
+    width: 100%;
     background: white;
     z-index: 2;
 }
