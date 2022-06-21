@@ -55,6 +55,28 @@
 .menu-main a.current,
 .menu-main a:hover {color: #F58262;}
 
+
+/*.menu-main a:before,*/
+/*.menu-main a:after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: calc(50% - 3px);*/
+/*    width: 6px;*/
+/*    height: 6px;*/
+/*    border-radius: 50%;*/
+/*    background: #F58262;*/
+/*    opacity: 0;*/
+/*    transition: .5s ease-in-out;*/
+/*}*/
+/*.menu-main a:before {left: 5px;}*/
+/*.menu-main a:after {right: 5px;}*/
+/*.menu-main a.current:before,*/
+/*.menu-main a.current:after,*/
+/*.menu-main a:hover:before,*/
+/*.menu-main a:hover:after {opacity: 1;}*/
+/*.menu-main a.current,*/
+/*.menu-main a:hover {color: #F58262;}*/
+
 @media(max-width:680px) {
     .menu-main li {display: block;}
 }

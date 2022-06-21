@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import { useForm, ValidationError } from '@formspree/react';
 import './Reservation.css'
-import axios from "axios";
 import $ from "jquery"
 import Modal from "../../Modal/Modal";
+import PreLoad from "../../PreLoad/PreLoad";
 
 const APIurl = [
     'https://api.formsubmits.com/forms/98cd273f-fc7f-46e2-a831-31e1169505c1/submit',
     'https://api.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/submit'
 ]
-const CodeSuccessAPI = '6AlJaXhWRSrtHTUb'
-const mailForSent = 'vladislav.bulahov@yandex.ru'
+const CodeSuccessAPI = '6AlJaXhWRSrtHTUb' //setting API https://app.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/settings
+const mailForSent = 'vladislav.bulahov@yandex.ru' // for malto
 
-const DateToday =  (today = new Date, countDays = 0) => {
+const DateToday =  (today = new Date(), countDays = 0) => {
 
     let dd = today.getDate() + countDays;
     let mm = today.getMonth() + 1; //January is 0!
@@ -36,15 +35,14 @@ const Reservation = () => {
         countAdults: 1,
         countChildren: 1,
         dateArrived: DateToday(),
-        dateOut: DateToday(new Date, 1),
+        dateOut: DateToday(new Date(), 1),
         roomsNumber: [1, 2, 3, 4, 5, 6, 7],
         choseRoom: '1'
     })
-
     const [validEmail, setValidEmail] = useState(true)
     const [modalActive, setModalActive] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
-
+    const [isLoad, setIsLoad] = useState(false)
     const messageText = `Имя гостя: ${form.name}\n
                           Электронная почта: ${form.mail}\n
                           Телефон: ${form.phone}\n
@@ -83,6 +81,7 @@ const Reservation = () => {
             success: function(data){
 
                 console.log(data);
+                console.log( $(data).filter().slice(0, 3).end().end().slice(3))
                 if (data.indexOf(codeSuccess, 0) == -1 || data.toUpperCase().indexOf('ERROR', 0) != -1) {
                         console.log('something wrong with API server')
                     } else
@@ -93,7 +92,11 @@ const Reservation = () => {
 
             }
         });
-
+            // $('#modal').bind('ajaxStart', function(){
+            //     $('#modal').show();
+            // }).bind('ajaxStop', function(){
+            //     $('#modal').hide();
+            // });
         } catch (e)  {
             console.log(e);
             flagError = !flagError;
@@ -108,9 +111,6 @@ const Reservation = () => {
         const emailError = document.querySelector('#mail + span.error');
 
         email.onchange = () => {
-            // Каждый раз, когда пользователь что-то вводит,
-            // мы проверяем, являются ли поля формы валидными
-
             if (email.validity.valid) {
                 // Если на момент валидации какое-то сообщение об ошибке уже отображается,
                 // если поле валидно, удаляем сообщение
@@ -126,25 +126,9 @@ const Reservation = () => {
                 showError();
             }
 
+
+
         }
-        // email.addEventListener('input', function () {
-        //     // Каждый раз, когда пользователь что-то вводит,
-        //     // мы проверяем, являются ли поля формы валидными
-        //
-        //     if (email.validity.valid) {
-        //         // Если на момент валидации какое-то сообщение об ошибке уже отображается,
-        //         // если поле валидно, удаляем сообщение
-        //         emailError.textContent = ''; // Сбросить содержимое сообщения
-        //         emailError.className = 'error'; // Сбросить визуальное состояние сообщения
-        //         setValidEmail(true)
-        //
-        //     } else {
-        //         setValidEmail(false)
-        //         console.log('NE valid')
-        //         showError();
-        //     }
-        //
-        // });
 
         function showError() {
             if(email.validity.typeMismatch) {
@@ -153,20 +137,19 @@ const Reservation = () => {
             textError.className = 'error active'
             //textError.className = 'error active';
         }
+
+        $(document).ajaxStart(function() {
+            setIsLoad(true)
+        });
+        $(document).ajaxStop(function() {
+            setIsLoad(false)
+        });
     });
 
-
-
     return (
-        <div className='container-reservation-con'>
         <div className='container-reservation'>
+            <div className='reservation'>
 
-            {/*{document.body.append(secondForm)}*/}
-            {/*{secondForm.submit()}*/}
-            {/*{document.body.append(firstForm)}*/}
-            {/*{ respons= firstForm.submit}*/}
-            {/*{console.log(state)}*/}
-            {/*{console.log(respons)}*/}
             <form noValidate>
                 <label>Имя</label>
                 <input
@@ -184,7 +167,7 @@ const Reservation = () => {
                     onChange={e => (
                         setForm({...form, phone: e.target.value}))}
                 />
-                <h1>Email</h1>
+                <h1>Электронная почта</h1>
                 <input value= {form.mail}
                        id="mail"
                        type="email"
@@ -206,6 +189,7 @@ const Reservation = () => {
                 <input value= {form.countChildren}
                        type="number"
                        placeholder="Количество детей"
+                       min={0}
                        onChange={e => (
                            setForm({...form, countChildren: Number(e.target.value)}))}
                 />
@@ -239,86 +223,66 @@ const Reservation = () => {
 
             </form>
             <div className="send-button">
-            <button onClick={
-                async (e) => {
-                    e.preventDefault()
-                    if (form.name) {
-                        if (form.phone || form.mail) {
-                           //  let mail = $( "#mail" )
-                           // console.log(mail)
-                            if (form.phone || (form.mail && validEmail)) { //if phone is not null this validEmail would be notValid\false
-                                for (let i = 0; i < APIurl.length; i++) {
-                                    const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)
+                <button className="custom-btn btn-12" onClick={
+                    async (e) => {
+                        e.preventDefault()
+                        if (form.name) {
+                            if (form.phone || form.mail) {
+                               //  let mail = $( "#mail" )
+                               // console.log(mail)
+                                if (form.phone || (form.mail && validEmail)) { //if phone is not null this validEmail would be notValid\false
+                                    for (let i = 0; i < APIurl.length; i++) {
+                                        const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)
 
-                                    if (!response) {
-                                        console.log(response)
-                                        console.log(i)
-                                        setForm({
-                                            name:'',
-                                            phone: '',
-                                            mail: '',
-                                            countAdults: 1,
-                                            countChildren: 1,
-                                            dateArrived: DateToday(),
-                                            dateOut: DateToday(new Date, 1),
-                                            roomsNumber: [1, 2, 3, 4, 5, 6, 7],
-                                            choseRoom: '1'
-                                        })
-                                        setValidEmail(true)
-                                        setAlertMessage("Ваша заявка принята")
-                                        setModalActive(true)
-                                        break
-                                    }
-                                    if (i === APIurl.length - 1 && response) {
-                                        document.body.append(secondForm)
-                                        secondForm.submit()
-                                        setAlertMessage("Ваша заявка принята")
-                                        setModalActive(true)
+                                        if (!response) {
+                                            console.log(response)
+                                            console.log(i)
+                                            setForm({
+                                                name:'',
+                                                phone: '',
+                                                mail: '',
+                                                countAdults: 1,
+                                                countChildren: 1,
+                                                dateArrived: DateToday(),
+                                                dateOut: DateToday(new Date(), 1),
+                                                roomsNumber: [1, 2, 3, 4, 5, 6, 7],
+                                                choseRoom: '1'
+                                            })
+                                            setValidEmail(true)
+                                            setAlertMessage("Ваша заявка принята")
+                                            setModalActive(true)
+                                            break
+                                        }
+                                        if (i === APIurl.length - 1 && response) {
+                                            document.body.append(secondForm)
+                                            secondForm.submit()
+                                            setAlertMessage("Ваша заявка принята")
+                                            setModalActive(true)
+                                        }
                                     }
                                 }
+                            } else {
+                                setAlertMessage("Введите телефон или Email")
+                                setModalActive(true)
+                                    //alert('Заполните телефон или Email')
                             }
                         } else {
-                            setAlertMessage("Введите телефон или Email")
+                            setAlertMessage("Введите Ваше имя")
                             setModalActive(true)
-                                //alert('Заполните телефон или Email')
+                            //alert('Заполните имя')
                         }
-                    } else {
-                        setAlertMessage("Введите Ваше имя")
-                        setModalActive(true)
-                        //alert('Заполните имя')
                     }
-                }
 
-            }>Подтвердить</button>
+                }><span>Клик!</span><span>Отправить</span></button>
+                {/*<button className="custom-btn btn-12" onClick={e => setIsLoad(true)}>*/}
+                {/*    <span>Click!</span><span>Read More</span>*/}
+                {/*</button>*/}
             </div>
-            {/*<button onClick={async () => {*/}
-            {/*    document.body.append(secondForm)*/}
-            {/*    secondForm.submit()*/}
-
-            {/*}}> axio</button>*/}
-
-            {/*<button onClick={*/}
-            {/*   async (e) => {*/}
-            {/*       for (let i = 0; i < APIurl.length; i++) {*/}
-            {/*           const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)*/}
-
-            {/*           if (!response) {*/}
-            {/*               console.log(response)*/}
-            {/*               console.log(i)*/}
-            {/*               break*/}
-            {/*           }*/}
-
-            {/*           if (i === APIurl.length - 1 && response) {*/}
-            {/*               document.body.append(secondForm)*/}
-            {/*               secondForm.submit()*/}
-            {/*           }*/}
-            {/*        }*/}
-            {/*   }*/}
-            {/*}>Test</button>*/}
-            <Modal active={modalActive} setActive={setModalActive}>
+            <Modal  active={modalActive} setActive={setModalActive}>
                 <h1>{alertMessage}</h1>
             </Modal>
-            {/*<button onClick={() => setModalActive(true)}>Modal</button>*/}
+
+            <PreLoad active = {isLoad}></PreLoad>
         </div>
         </div>
     );

@@ -1,12 +1,10 @@
 /*::-webkit-scrollbar {*/
 /*    width: 0;*/
 /*}*/
-.container-reservation-con {
-    overflow-y: hidden;
+.container-reservation {
     position: relative;
 }
-.container-reservation {
-    overflow-y: hidden;
+.reservation {
     display: flex;
     padding: 0;
     margin: 0;
@@ -16,18 +14,18 @@
     background-image: url('./66644.jpg');
     justify-content: center;
     align-items: center;
-    background-size: 100% 100%;
+    background-size: auto 100%;
     background-repeat: no-repeat;
 }
 
-.container-reservation form {
+.reservation form {
     position: relative;
     padding: 30px 0;
     margin: auto;
     display: block;
 }
 
-.container-reservation input {
+.reservation input {
     position: relative;
     display: block;
     text-align: center;
@@ -38,7 +36,7 @@
     width: 400px;
 }
 
-.container-reservation h1 {
+.reservation h1 {
     font-style: normal;
     font-size: 24px;
     font-weight: 400;
@@ -46,7 +44,7 @@
 }
 
 
-.container-reservation select {
+.reservation select {
     position: relative;
     display: block;
     text-align: center;
@@ -69,15 +67,14 @@ input:focus:invalid {
     outline: none;
 }
 
-/* Это стили для кастомных сообщений об ошибке */
 .error {
     width  : 100%;
     padding: 0;
     position: absolute;
-    font-size: 80%;
+    font-size: 18px;
     color: white;
     background-color: #900;
-    border-radius: 0 0 5px 5px;
+    border-radius: 5px;
     visibility: hidden;
     box-sizing: border-box;
 }
@@ -87,22 +84,101 @@ input:focus:invalid {
     visibility: visible;
 }
 
-.noterror {
-    visibility: hidden;
-}
-
 .send-button {
     position: absolute;
-    bottom: 30px;
-    padding-bottom: 30px;
+    bottom: 120px;
+    }
+
+/*.send-button button {*/
+/*    font-size: 24px;*/
+/*    border: solid 3px #777777;*/
+/*    border-radius: 10px;*/
+/*    width: 160px;*/
+/*    margin-top: 10px;*/
+/*    background: #b99470;*/
+/*    color: white;*/
+/*}*/
+
+.custom-btn {
+    color: #fff;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    margin-left: -150px;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
 }
 
-.send-button button {
+
+.btn-12{
+    position: relative;
+    border:none;
+    box-shadow: none;
+    line-height: 42px;
+    -webkit-perspective: 230px;
+    perspective: 230px;
+}
+.btn-12 span {
+    font-family: 'Lato', sans-serif;
     font-size: 24px;
-    border: solid 3px #777777;
-    border-radius: 10px;
-    width: 160px;
-    margin-top: 10px;
-    background: #b99470;
-    color: white;
+    background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    display: block;
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    border-radius: 5px;
+    margin:0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+    box-shadow:
+            -7px -7px 20px 0px #fff9,
+            -4px -4px 5px 0px #fff9,
+            7px 7px 20px 0px #0002,
+            4px 4px 5px 0px #0001;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    color: transparent;
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
 }
