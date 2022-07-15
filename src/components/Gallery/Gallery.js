@@ -5,7 +5,8 @@ import GalleryModal from "./GalleryModal/GalleryModal";
 class Gallery extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { currentIndex: null };
+        this.state = { currentIndex: null,
+        isopen: false};
         this.closeModal = this.closeModal.bind(this);
         this.findNext = this.findNext.bind(this);
         this.findPrev = this.findPrev.bind(this);
@@ -21,12 +22,14 @@ class Gallery extends React.Component {
     }
     openModal(e, index) {
         this.setState ({ currentIndex: index });
+        this.setState ({ isopen: true });
     }
     closeModal(e) {
         if (e != undefined) {
             e.preventDefault();
         }
         this.setState ({ currentIndex: null });
+        this.setState ({ isopen: false });
     }
     findPrev(e) {
         if (e != undefined) {
@@ -58,6 +61,7 @@ class Gallery extends React.Component {
                     hasPrev={this.state.currentIndex > 0}
                     hasNext={this.state.currentIndex + 1 < this.imgs.length}
                     src={this.imgs[this.state.currentIndex]}
+                    isopen={this.state.isopen}
                 />
             </div>
         )

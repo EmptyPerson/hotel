@@ -1,50 +1,33 @@
 import React from 'react';
 import './Rooms.css'
+import Gallery from "../Gallery/Gallery";
+const imgUrls = ['images/room_1.jpg','https://source.unsplash.com/lVmR1YaBGG4/800x600','https://source.unsplash.com/5KvPQc1Uklk/800x600']
+const imgUrlss = ['images/room_1.jpg','https://source.unsplash.com/lVmR1YaBGG4/800x600','https://source.unsplash.com/5KvPQc1Uklk/800x600']
 
 const Rooms = () => {
     return (
         <div className="room-container">
-        <div className="container-booking">
-            <div className="imgLoader"></div>
-
-            <div className="booking">
-
-                <h1 className="title-booking">
-                    Turning pages
-                </h1>
-
-                <div className="credit">
-                    * Images loaded randomly from Picsum.photos
-                </div>
-
-                <div className="book">
-                    <div className="gap"></div>
-                    <div className="pages">
-                        <div className="page"></div>
-                        <div className="page"></div>
-                        <div className="page"></div>
-                        <div className="page"></div>
-                        <div className="page"></div>
-                        <div className="page"></div>
-                    </div>
-                    <div className="flips">
-                        <div className="flip flip1">
-                            <div className="flip flip2">
-                                <div className="flip flip3">
-                                    <div className="flip flip4">
-                                        <div className="flip flip5">
-                                            <div className="flip flip6">
-                                                <div className="flip flip7"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className="background-image">
+                <img src='images/Background_rooms.jpg'/>
             </div>
-        </div>
+            <div className="text-container">
+                <p className='phrase-lower'>Выбери свой дом</p>
+            </div>
+            <div className="rooms">
+                <h1>Аппартаменты</h1>
+                <p>1. Одноместный номер</p>
+                <Gallery imgs = {imgUrls}/>
+                <p>2. Одноместный номер</p>
+                <Gallery imgs = {imgUrlss}/>
+                <p>3. Двухместный номер</p>
+                <Gallery imgs = {imgUrls}/>
+                <p>4. Одноместный номер</p>
+                <Gallery imgs = {imgUrls}/>
+                <p>5. Одноместный номер</p>
+                <Gallery imgs = {imgUrls}/>
+                <p>6. Двухместный номер</p>
+                <Gallery imgs = {imgUrls}/>
+            </div>
         </div>
     );
 };

@@ -3,13 +3,11 @@ import './Reservation.css'
 import $ from "jquery"
 import Modal from "../../Modal/Modal";
 import PreLoad from "../../PreLoad/PreLoad";
+import {API, CodeSuccess, mail, Request} from "../../API/API";
 
-const APIurl = [
-    'https://api.formsubmits.com/forms/98cd273f-fc7f-46e2-a831-31e1169505c1/submit',
-    'https://api.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/submit'
-]
-const CodeSuccessAPI = '6AlJaXhWRSrtHTUb' //setting API https://app.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/settings
-const mailForSent = 'vladislav.bulahov@yandex.ru' // for malto
+const APIurl = API
+const CodeSuccessAPI = CodeSuccess //setting API https://app.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/settings
+const mailForSent = mail // for mailto
 
 const DateToday =  (today = new Date(), countDays = 0) => {
 
@@ -53,7 +51,6 @@ const Reservation = () => {
                           Выбранная комната: ${form.choseRoom}\n`
 
     const messageObj = {
-        'Имя гостя': form.name,
         'Электронная почта': form.mail,
         'Телефон': form.phone,
         'Количество взрослых': form.countAdults,
@@ -69,41 +66,7 @@ const Reservation = () => {
     secondForm.method = 'post'
     secondForm.encType = 'text/plain'
 
-    const RequestAPI = async function(message, url, codeSuccess){
-        let flagError = true //if true you need to send new requestAPI
-        try {
-        $.ajax({
-            url: url,
-            method: 'post',
-            async: false,
-            dataType: 'html',
-            data: message,
-            success: function(data){
-
-                console.log(data);
-                console.log( $(data).filter().slice(0, 3).end().end().slice(3))
-                if (data.indexOf(codeSuccess, 0) == -1 || data.toUpperCase().indexOf('ERROR', 0) != -1) {
-                        console.log('something wrong with API server')
-                    } else
-                    {
-                        flagError = !flagError;
-                        console.log('goodServer')
-                    }
-
-            }
-        });
-            // $('#modal').bind('ajaxStart', function(){
-            //     $('#modal').show();
-            // }).bind('ajaxStop', function(){
-            //     $('#modal').hide();
-            // });
-        } catch (e)  {
-            console.log(e);
-            flagError = !flagError;
-        }
-
-        return flagError;
-    }
+    const RequestAPI = Request
 
     useEffect(() => {
         const email = document.getElementById('mail');
@@ -121,13 +84,10 @@ const Reservation = () => {
 
             } else {
                 setValidEmail(false)
-                console.log('NE valid')
+                //console.log('NE valid')
                 textError.className = 'error active'
                 showError();
             }
-
-
-
         }
 
         function showError() {
@@ -151,7 +111,8 @@ const Reservation = () => {
             <div className='reservation'>
 
             <form noValidate>
-                <label>Имя</label>
+                {/*<p className='head-text'>Забронировать</p>*/}
+                <h1>Имя</h1>
                 <input
                     value= {form.name}
                     type="text"
@@ -235,8 +196,8 @@ const Reservation = () => {
                                         const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)
 
                                         if (!response) {
-                                            console.log(response)
-                                            console.log(i)
+                                            //console.log(response)
+                                            console.log(`Used API url from array: array index ${i}`)
                                             setForm({
                                                 name:'',
                                                 phone: '',
@@ -264,12 +225,10 @@ const Reservation = () => {
                             } else {
                                 setAlertMessage("Введите телефон или Email")
                                 setModalActive(true)
-                                    //alert('Заполните телефон или Email')
                             }
                         } else {
                             setAlertMessage("Введите Ваше имя")
                             setModalActive(true)
-                            //alert('Заполните имя')
                         }
                     }
 
@@ -281,7 +240,6 @@ const Reservation = () => {
             <Modal  active={modalActive} setActive={setModalActive}>
                 <h1>{alertMessage}</h1>
             </Modal>
-
             <PreLoad active = {isLoad}></PreLoad>
         </div>
         </div>

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Raleway:ital@1&family=Roboto+Slab:wght@300&family=Satisfy&display=swap');
 
 .block {
-    height: 95%;
     /*overflow: hidden;*/
     position: relative;
     padding: 0;
@@ -34,6 +33,7 @@
 }
 .block-image img {
     width: 100%;
+    max-height: 100vh;
     transform-origin: bottom right;
     animation: grow 150000ms ease-in-out;
     animation-iteration-count: infinite;
@@ -76,14 +76,6 @@
     font-size: 26px;
 }
 
-.block-headText {
-    position: relative;
-    text-align: center;
-    padding-top: 50px;
-    font-family: 'Roboto Slab', serif;
-    z-index: 50;
-}
-
 .block-underText {
     position: relative;
     text-align: center;
@@ -94,9 +86,5 @@
     font-family: 'Marck Script', cursive;
     font-style: italic;
     font-weight: 100;
-    z-index: 1;
-}
-.test {
-    position: absolute;
     z-index: 1;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css'
-import Footer from "../Footer/Footer";
+
 
 
 
@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div className="block">
             <div className="block-image">
-                <img src='./Background.jpg'/>
+                <img src={"/images/Background_home.jpg"}/>
             </div>
             <div className="block-text">
                 <p className='text-head'>Люксовая гостиница</p>

@@ -13,10 +13,16 @@ class GalleryModal extends React.Component {
         document.body.removeEventListener('keydown', this.handleKeyDown);
     }
     handleKeyDown(e) {
+        if (e != undefined) {
+            e.preventDefault();
+        }
         if (e.keyCode === 27)
             this.props.closeModal();
-        if (e.keyCode === 37 && this.props.hasPrev)
+        if (e.keyCode === 37 && this.props.hasPrev) {
+            // console.log(this.props)
             this.props.findPrev();
+            // console.log(this.props)
+        }
         if (e.keyCode === 39 && this.props.hasNext)
             this.props.findNext();
     }
@@ -27,9 +33,10 @@ class GalleryModal extends React.Component {
             return null;
         }
         return (
+            this.props.isopen ?
             <div>
-                <div className="modal-overlay" onClick={closeModal}></div>
-                <div isOpen={!!src} className="modal">
+                 <div className="modal-overlay" onClick={closeModal}></div>
+                <div className="modal">  {/*isOpen={!!src}*/}
                     <div className='modal-body'>
                         <a href="src/components/Gallery/Gallery#" className='modal-close' onClick={closeModal} onKeyDown={this.handleKeyDown}>&times;</a>
                         {hasPrev && <a href="src/components/Gallery/Gallery#" className='modal-prev' onClick={findPrev} onKeyDown={this.handleKeyDown}>&lsaquo;</a>}
@@ -38,6 +45,7 @@ class GalleryModal extends React.Component {
                     </div>
                 </div>
             </div>
+                    : null
         )
     }
 }
