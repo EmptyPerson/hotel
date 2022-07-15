@@ -15,7 +15,7 @@ function App() {
     const [ActiveRow, setActiveRow] = useState([
         {id: 1, text: 'Главная', activeF: false, header: 'home'},
         {id: 2, text: 'Галлерея', activeF: false, header: 'gallery'},
-        {id: 3, text: 'Комнаты', activeF: false, header: 'rooms'},
+        {id: 3, text: 'Номера', activeF: false, header: 'rooms'},
         {id: 4, text: 'Бронирование', activeF: false, header: 'booking'},
         {id: 5, text: 'Контакты', activeF: false, header: 'contacts'}
     ])

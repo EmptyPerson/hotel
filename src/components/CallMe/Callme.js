@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import  './Callme.css'
-
 import Modal from "../Modal/Modal";
 import {mail, Request, CodeSuccess, API} from "../API/API";
+import $ from "jquery";
+import PreLoad from "../PreLoad/PreLoad";
 
 
 const Callme = () => {
@@ -12,6 +13,7 @@ const Callme = () => {
     })
     const [modalActive, setModalActive] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
+    const [isLoad, setIsLoad] = useState(false)
     const messageObj = {
         'Имя гостя': clientInfo.name,
         'Телефон': clientInfo.phone
@@ -21,6 +23,15 @@ const Callme = () => {
     anotherWay.action = `mailto:${mail}?subject=Booking&body=${messageText}`
     anotherWay.method = 'post'
     anotherWay.encType = 'text/plain'
+
+    useEffect(() => {
+        $(document).ajaxStart(function() {
+            setIsLoad(true)
+        });
+        $(document).ajaxStop(function() {
+            setIsLoad(false);
+        });
+    });
 
     return (
         <div className="contact-form">
@@ -71,6 +82,7 @@ const Callme = () => {
                                                             console.log(`Used API url from array: array index ${i}`)
                                                             setAlertMessage("Ваша заявка принята")
                                                             setModalActive(true)
+                                                            setClientInfo({...clientInfo, name: '', phone: ''})
                                                             break
                                                         }
                                                         if (i === API.length - 1 && response) {
@@ -78,6 +90,7 @@ const Callme = () => {
                                                             anotherWay.submit()
                                                             setAlertMessage("Ваша заявка принята")
                                                             setModalActive(true)
+                                                            setClientInfo({...clientInfo, name: '', phone: ''})
                                                         }
                                                     }
                                                 } else {
@@ -97,7 +110,7 @@ const Callme = () => {
             <Modal  active={modalActive} setActive={setModalActive}>
                 <h1 className='alert-text'>{alertMessage}</h1>
             </Modal>
-
+            <PreLoad active = {isLoad}></PreLoad>
         </div>
     );
 };
