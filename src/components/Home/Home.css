@@ -9,15 +9,7 @@
     top: 0;
 }
 .block-text {
-    width: 800px;
-    height: 250px;
     position: absolute;
-    top: -600px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    z-index: 50;
     font-size: 60px;
     color: #fdfdfd;
     line-height: 1.4;
@@ -27,9 +19,9 @@
 .block-image {
     position: relative;
     width: 100%;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .block-image img {
     width: 100%;
@@ -79,7 +71,7 @@
 .block-underText {
     position: relative;
     text-align: center;
-    color: #dedede;
+    color: #aa754c;
     padding-top: 20px;
     padding-bottom: 0px;
     font-size: 50px;

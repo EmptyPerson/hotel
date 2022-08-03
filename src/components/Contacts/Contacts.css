@@ -4,12 +4,14 @@
 
 .container-contact {
     position: relative;
-    height: 97vh;
     width: 100%;
     text-align: center;
+    min-height: calc(100vh - var(--footer-height) - var(--navbar-height));
     /*background-image: url('./Background_contacts.jpg');*/
     /*background-size: 100% 100%;*/
     /*background-repeat: no-repeat;*/
+    overflow-x: hidden;
+    overflow-y: hidden;
     background: #dedede;
 }
 
@@ -19,12 +21,13 @@
     position: relative;
     padding-top: 20px;
     display: inline-block;
+    padding-left: 5px;
 }
 
 .wrapper-main-text {
     position: relative;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 30px;
     display: block;
 }
 
@@ -65,6 +68,7 @@
 .descript-wrapper {
     float: left;
     margin-bottom: 20px;
+    margin-left: 15px;
 }
 .aio-icon-title {
     font-size: 18px;
@@ -77,7 +81,7 @@
 @media (max-width: 767px) {
     .descript-wrapper,
     .ico-wrap {
-        float: none;
+        float: left;
         text-align: center;
     }
     .ico-wrap {
@@ -89,6 +93,7 @@
     padding-top: 20px;
     position: relative;
     display: inline-block;
+    max-width: 95%;
 
 }
 

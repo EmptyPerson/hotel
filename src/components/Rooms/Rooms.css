@@ -14,8 +14,10 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    z-index: 1;
     max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .background-image img {
@@ -27,19 +29,11 @@
 
 }
 .text-container {
-    width: 800px;
-    height: 250px;
     position: absolute;
-    top: 120px;
-    right: 0;
-    left: 0;
-    margin: auto;
-    z-index: 50;
+    margin-bottom: 200px;
     font-size: 60px;
     color: #fdfdfd;
     line-height: 1.4;
-    text-align: center;
-
     /*text-shadow: 3px 3px 20px #000;*/
 }
 .phrase-lower {
@@ -70,11 +64,8 @@
 
 .rooms p {
     position: relative;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: start;
-    width: 1200px;
-    margin: auto;
+    padding: 20px 100px 0;
+    width: 100%;
     font-family: 'Roboto Slab', serif;
     font-size: 26px;
 }

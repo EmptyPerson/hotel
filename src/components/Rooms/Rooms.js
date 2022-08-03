@@ -8,11 +8,12 @@ const Rooms = () => {
     return (
         <div className="room-container">
             <div className="background-image">
-                <img src='images/Background_rooms.jpg'/>
+                <img src='images/Background_rooms.jpg' alt="Sorry this unavailable item"/>
+                <div className="text-container">
+                    <p className='phrase-lower'>Выбери свой дом</p>
+                </div>
             </div>
-            <div className="text-container">
-                <p className='phrase-lower'>Выбери свой дом</p>
-            </div>
+
             <div className="rooms">
                 <h1>Аппартаменты</h1>
                 <p>1. Одноместный номер</p>

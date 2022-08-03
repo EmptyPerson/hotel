@@ -23,7 +23,7 @@ const ItemsNavbar = () => {
         //setActiveRow(ActiveRow.map((item)=> (item.id = e.target.id ? {...item, activeF: !e.target.activeF} : item)))
     }
     return (
-        <div>
+        <div className="nav-wrapper">
             {ActiveRow.map((item) => (
                 <li key={item.id}>
                     <Link className={item.activeF ? "current": null} to={item.header} id={item.id} onClick={activate}>

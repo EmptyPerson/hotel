@@ -23,9 +23,11 @@ const Navbar = () => {
 
     return (
 
-            <div>
+            <div className="container-navbar">
                 <ul className="menu-main">
-                    <li className="title"><p>Дом у дороги</p></li>
+                    <div className="home-text">
+                        <li className="title"><p>Дом у дороги</p></li>
+                    </div>
                     <ItemsNavbar />
                 </ul>
             </div>

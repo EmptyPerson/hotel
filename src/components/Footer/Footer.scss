@@ -1,17 +1,14 @@
-:root {
-    --footer-height: 3vh;
-}
+
 
 .footer-detail {
     position: relative;
     margin: 0;
     padding: 0;
-    left:0;
+    left: 0;
     bottom: 0;
-    height: var(--footer-height);
+    height: 3vh;
     width: 100%;
-    background-color: #292c2f;
-    justify-content: center;
+
 }
 
 .footer {
@@ -21,11 +18,11 @@
     font-size: 18px;
     text-align: center;
     z-index: 0;
-    background-color: inherit;
-}
-.footer li {display: inline-block;}
 
-.footer a {
+li {
+    display: inline-block;
+}
+a {
     text-decoration: none;
     display: inline-block;
     margin: 0 15px;
@@ -34,6 +31,13 @@
     color: #777777;
     transition: .3s linear;
     position: relative;
+&:before {
+     left: 5px;
+ }
+&:after {
+     right: 5px;
+ }
+}
 }
 .footer a:before,
 .footer a:after {
@@ -47,35 +51,34 @@
     opacity: 0;
     transition: .5s ease-in-out;
 }
-
-
-.footer a:before {left: 5px;}
-.footer a:after {right: 5px;}
 .footer a.current:before,
 .footer a.current:after,
 .footer a:hover:before,
-.footer a:hover:after {opacity: 1;}
+.footer a:hover:after {
+    opacity: 1;
+}
 .footer a.current,
-.footer a:hover {color: #F58262;}
-
+.footer a:hover {
+    color: #F58262;
+}
 @media(max-width:680px) {
     .footer li {display: block;}
 }
 
 .footer-text {
-    padding:0;
+    padding: 0;
     margin-top: -20px;
     margin-left: 10px;
     font-family: 'PT Sans Caption', sans-serif;
-
 }
 
-.footer-text a {
+.footer-text {
+a {
     text-decoration: none;
     color: #777777;
+&:hover {
+     text-decoration: underline;
+     color: red;
+ }
 }
-
-.footer-text a:hover {
-    text-decoration: underline;
-    color: red;
 }

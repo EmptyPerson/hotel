@@ -12,12 +12,13 @@ const Home = () => {
     return (
         <div className="block">
             <div className="block-image">
-                <img src={"/images/Background_home.jpg"}/>
+                <img src={"/images/Background_home.jpg"} alt="Sorry this unavailable item"/>
+                <div className="block-text">
+                    <p className='text-head'>Люксовая гостиница</p>
+                    <p className='text-lower'>Чувствуй себя дома</p>
+                </div>
             </div>
-            <div className="block-text">
-                <p className='text-head'>Люксовая гостиница</p>
-                <p className='text-lower'>Чувствуй себя дома</p>
-            </div>
+
             <div className="block-description">
                 <h1 className='block-underText'>Добро пожаловать</h1>
                 <p className='block-descriptionText'>{descriptionText}</p>
