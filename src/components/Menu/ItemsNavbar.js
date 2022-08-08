@@ -4,13 +4,7 @@ import './Navbar.css'
 import {NavBarContext} from "../../context";
 
 const ItemsNavbar = () => {
-    // const [ActiveRow, setActiveRow] = useState([
-    //     {id: 1, text: 'Главная', activeF: false, header: 'home'},
-    //     {id: 2, text: 'Галлерея', activeF: false, header: 'gallery'},
-    //     {id: 3, text: 'Комнаты', activeF: false, header: 'rooms'},
-    //     {id: 4, text: 'Бронирование', activeF: false, header: 'booking'},
-    //     {id: 5, text: 'Контакты', activeF: false, header: 'contacts'}
-    // ])
+
     const {ActiveRow, setActiveRow} = useContext(NavBarContext)
     const activate = (e) => {
         // e.preventDefault()
