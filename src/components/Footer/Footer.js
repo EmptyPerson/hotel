@@ -3,7 +3,7 @@ import './Footer.css'
 import ItemsNavbar from "../Menu/ItemsNavbar";
 const Footer = () => {
     return (
-        <div>
+        <div className="container_footer">
             <footer className='footer-detail'>
                 <ul className="footer">
                     <ItemsNavbar/>

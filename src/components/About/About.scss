@@ -7,7 +7,8 @@
 
 .container {
   height: 100%;
-  /*overflow: hidden;*/
+  overflow: hidden;
+
   position: relative;
   padding-top: 24px;
   padding-left: 0;
@@ -22,18 +23,16 @@
   font-size: 40px;
   font-family: 'Roboto Slab', serif;
   font-weight: 1000;
-  letter-spacing: 4px;
   position: relative;
   top: 50px;
   height: 100px;
-  margin-left: 50%;
-  max-width: 200px;
-  transform: translate(-20px, -20px);
+  margin: 0 auto;
+  max-width: 100%;
+  transform: translate(35%, -20px);
 }
 
 .text {
   position: absolute;
-  width: 40px;
  // line-height: 40px;
  // color: #dedede;
   color: #aa754c;
@@ -53,10 +52,11 @@
   height: 55px;
 }
 $countLetters: 12;
+$space_letter: 40;
 
 @for $i from 0 through $countLetters {
-  $left_0: -200;
-  $left: $left_0 + $i * 40;
+  $left_0: 0;
+  $left: $left_0 + $i * $space_letter;
 
   $time_0: 1;
   $time: $time_0 + $i * 0.2;
@@ -100,42 +100,7 @@ $countLetters: 12;
       opacity: 1;
     }
   }
-  // these styles show background for letters
 
-  //@-webkit-keyframes text-after-animation#{$i} {
-  //  0% {
-  //    width: 0;
-  //    left: 0px;
-  //    top: 0;
-  //    background-color: #5b5b5d;
-  //    opacity: 1;
-  //  }
-  //  50% {
-  //    width: 40px;
-  //    opacity: 1;
-  //  }
-  //  100% {
-  //    left: 0px;
-  //    opacity: 0;
-  //  }
-  //}
-  //@keyframes text-after-animation#{$i} {
-  //  0% {
-  //    width: 0;
-  //    left: 0px;
-  //    top: 0;
-  //    background-color: #5b5b5d;
-  //    opacity: 1;
-  //  }
-  //  50% {
-  //    width: 40px;
-  //    opacity: 1;
-  //  }
-  //  100% {
-  //    left: 0px;
-  //    opacity: 0;
-  //  }
-  //}
   @if $i != $countLetters {
     @-webkit-keyframes text2-animation#{$i} {
       0% {
@@ -248,4 +213,9 @@ $countLetters: 12;
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .criterion {
+    display: none;
+  }
+}
 /*# sourceMappingURL=About.scss.map */

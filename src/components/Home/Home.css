@@ -80,3 +80,13 @@
     font-weight: 100;
     z-index: 1;
 }
+
+@media screen and (max-width: 1000px){
+    .block-descriptionText {
+        width: 100%;
+        padding-right: 10px;
+        padding-left: 10px;
+
+    }
+
+}

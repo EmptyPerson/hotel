@@ -17,5 +17,13 @@
 /*    position: relative;*/
 /*}*/
 
-
+@media screen and (max-width: 1000px) {
+    .container_footer {
+        display: none;
+        opacity: 0;
+    }
+    .footer {
+        display: none;
+    }
+}
 

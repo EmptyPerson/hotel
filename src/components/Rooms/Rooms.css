@@ -30,9 +30,9 @@
 }
 .text-container {
     position: absolute;
-    margin-bottom: 200px;
+    text-align: center;
     font-size: 60px;
-    color: #fdfdfd;
+    color: #5b5b5d;
     line-height: 1.4;
     /*text-shadow: 3px 3px 20px #000;*/
 }
@@ -44,10 +44,6 @@
     z-index: 1;
 }
 
-/*.phrase-head {*/
-/*    font-family: 'Roboto Slab', serif;*/
-/*    font-size: 26px;*/
-/*}*/
 
 @keyframes grow {
     0% {
@@ -64,10 +60,11 @@
 
 .rooms p {
     position: relative;
-    padding: 20px 100px 0;
+    padding: 20px 20px 0;
     width: 100%;
     font-family: 'Roboto Slab', serif;
     font-size: 26px;
+    font-weight: bold;
 }
 
 .rooms h1 {

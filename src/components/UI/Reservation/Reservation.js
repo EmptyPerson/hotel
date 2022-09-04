@@ -116,7 +116,6 @@ const Reservation = () => {
                 <input
                     value= {form.name}
                     type="text"
-                    placeholder="Имя"
                     onChange={e => (
                         setForm({...form, name: e.target.value}))}
                 />
@@ -124,7 +123,6 @@ const Reservation = () => {
                 <input
                     value= {form.phone}
                     type="text"
-                    placeholder="Телефон"
                     onChange={e => (
                         setForm({...form, phone: e.target.value}))}
                 />
@@ -132,7 +130,6 @@ const Reservation = () => {
                 <input value= {form.mail}
                        id="mail"
                        type="email"
-                       placeholder="Email"
                        onChange={e => (
 
                            setForm({...form, mail: e.target.value}))}
@@ -141,7 +138,6 @@ const Reservation = () => {
                 <h1>Количество взрослых</h1>
                 <input value= {form.countAdults}
                        type="number"
-                       placeholder="Количество взрослых"
                        min={1}
                        onChange={e => (
                            setForm({...form, countAdults: Number(e.target.value)}))}
@@ -149,14 +145,12 @@ const Reservation = () => {
                 <h1>Количество детей</h1>
                 <input value= {form.countChildren}
                        type="number"
-                       placeholder="Количество детей"
                        min={0}
                        onChange={e => (
                            setForm({...form, countChildren: Number(e.target.value)}))}
                 />
                 <h1>Дата прибытия</h1>
                 <input value={`${form.dateArrived}`} type="datetime-local"
-                       placeholder="Дата прибытия"
                        min={`${DateToday(new Date(new Date().setHours(0, 0, 0)))}`}
                        onChange={e => (
                            setForm({...form, dateArrived: e.target.value}))}
@@ -164,7 +158,6 @@ const Reservation = () => {
                 <h1>Дата уезда</h1>
                 <input value={`${form.dateOut}`}
                        type="datetime-local"
-                       placeholder="Дата уезда"
                        min={`${DateToday(new Date(new Date().setHours(0, 0, 0)))}`}
                        onChange={e => (
                            setForm({...form, dateOut: e.target.value}))}
