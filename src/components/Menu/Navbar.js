@@ -17,6 +17,10 @@ const Navbar = () => {
                     </div>
                     <ItemsNavbar active = {isActiveNavbar} setActive = {isActiveNavbar}/>
                 </ul>
+                <ul style={{position: "fixed", marginBottom: "1rem"}} className= {isActiveNavbar ? "menu-main": "hide_navbar"}>
+                <li className="title"><p>Дом у дороги</p></li>
+
+                </ul>
                 <label htmlFor="active" className="menu-btn" onClick={() => {setIsActiveNavbar(!isActiveNavbar)}}><span></span></label>
                 {/*<label htmlFor="active" className="close"></label>*/}
             </div>

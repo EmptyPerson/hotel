@@ -22,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .block-image img {
     width: 100%;
@@ -73,7 +74,7 @@
     text-align: center;
     color: #aa754c;
     padding-top: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     font-size: 50px;
     font-family: 'Marck Script', cursive;
     font-style: italic;
@@ -88,5 +89,10 @@
         padding-left: 10px;
 
     }
+}
 
+@media screen and (max-width: 600px){
+    .block-image img {
+        width: 200%;
+    }
 }

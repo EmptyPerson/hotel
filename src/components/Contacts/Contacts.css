@@ -219,3 +219,9 @@
     position: fixed;
     bottom: 0;
 }
+
+@media screen and (max-width: 1000px) {
+    .container-contact {
+        padding-top: 2rem;
+    }
+}

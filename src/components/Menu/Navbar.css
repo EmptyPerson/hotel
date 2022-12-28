@@ -17,6 +17,18 @@
     background: white;
     z-index: 2;
 }
+
+.menu-main-not-active {
+    position: fixed;
+    list-style: none;
+    padding: 0 30px;
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    background: white;
+    z-index: 2;
+}
 .nav-wrapper {
     display: inline-block;
 }
@@ -154,9 +166,9 @@
 .menu-btn:before,
 .menu-btn:after{
     content: "";
-    position: absolute;
-    top: calc(50% - 1px);
-    width: 40%;
+    position: fixed;
+    margin-top: 1.25rem;
+    width: 2rem;
     border-bottom: 2px solid #000;
     transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
