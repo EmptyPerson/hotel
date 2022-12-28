@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './Reservation.css'
 import $ from "jquery"
 import Modal from "../../Modal/Modal";
 import PreLoad from "../../PreLoad/PreLoad";
 import {API, CodeSuccess, mail, Request} from "../../API/API";
+import {NavBarContext} from "../../../context";
 
 const APIurl = API
 const CodeSuccessAPI = CodeSuccess //setting API https://app.formsubmits.com/forms/0ffe80df-6fc0-48b9-851d-a91479522241/settings
@@ -41,6 +42,7 @@ const Reservation = () => {
     const [modalActive, setModalActive] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
     const [isLoad, setIsLoad] = useState(false)
+    const {isActiveNavbar} = useContext(NavBarContext)
     const messageText = `Имя гостя: ${form.name}\n
                           Электронная почта: ${form.mail}\n
                           Телефон: ${form.phone}\n
@@ -107,10 +109,10 @@ const Reservation = () => {
     });
 
     return (
-        <div className='container-reservation'>
+        <div className='container-reservation' style={isActiveNavbar? {height: "100vh"}: {height: "100%"}}>
             <div className='reservation'>
-
-            <form noValidate>
+            <div className="wrap-form">
+                <form noValidate>
                 {/*<p className='head-text'>Забронировать</p>*/}
                 <h1>Имя</h1>
                 <input
@@ -176,60 +178,62 @@ const Reservation = () => {
                 </select>
 
             </form>
-            <div className="send-button">
-                <button className="custom-btn btn-12" onClick={
-                    async (e) => {
-                        e.preventDefault()
-                        if (form.name) {
-                            if (form.phone || form.mail) {
-                               //  let mail = $( "#mail" )
-                               // console.log(mail)
-                                if (form.phone || (form.mail && validEmail)) { //if phone is not null this validEmail would be notValid\false
-                                    for (let i = 0; i < APIurl.length; i++) {
-                                        const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)
+                <div className="send-button">
+                    <button className="custom-btn btn-12" onClick={
+                        async (e) => {
+                            e.preventDefault()
+                            if (form.name) {
+                                if (form.phone || form.mail) {
+                                    //  let mail = $( "#mail" )
+                                    // console.log(mail)
+                                    if (form.phone || (form.mail && validEmail)) { //if phone is not null this validEmail would be notValid\false
+                                        for (let i = 0; i < APIurl.length; i++) {
+                                            const response = await RequestAPI(messageObj, APIurl[i], CodeSuccessAPI)
 
-                                        if (!response) {
-                                            //console.log(response)
-                                            console.log(`Used API url from array: array index ${i}`)
-                                            setForm({
-                                                name:'',
-                                                phone: '',
-                                                mail: '',
-                                                countAdults: 1,
-                                                countChildren: 1,
-                                                dateArrived: DateToday(),
-                                                dateOut: DateToday(new Date(), 1),
-                                                roomsNumber: [1, 2, 3, 4, 5, 6, 7],
-                                                choseRoom: '1'
-                                            })
-                                            setValidEmail(true)
-                                            setAlertMessage("Ваша заявка принята")
-                                            setModalActive(true)
-                                            break
-                                        }
-                                        if (i === APIurl.length - 1 && response) {
-                                            document.body.append(secondForm)
-                                            secondForm.submit()
-                                            setAlertMessage("Ваша заявка принята")
-                                            setModalActive(true)
+                                            if (!response) {
+                                                //console.log(response)
+                                                console.log(`Used API url from array: array index ${i}`)
+                                                setForm({
+                                                    name:'',
+                                                    phone: '',
+                                                    mail: '',
+                                                    countAdults: 1,
+                                                    countChildren: 1,
+                                                    dateArrived: DateToday(),
+                                                    dateOut: DateToday(new Date(), 1),
+                                                    roomsNumber: [1, 2, 3, 4, 5, 6, 7],
+                                                    choseRoom: '1'
+                                                })
+                                                setValidEmail(true)
+                                                setAlertMessage("Ваша заявка принята")
+                                                setModalActive(true)
+                                                break
+                                            }
+                                            if (i === APIurl.length - 1 && response) {
+                                                document.body.append(secondForm)
+                                                secondForm.submit()
+                                                setAlertMessage("Ваша заявка принята")
+                                                setModalActive(true)
+                                            }
                                         }
                                     }
+                                } else {
+                                    setAlertMessage("Введите телефон или Email")
+                                    setModalActive(true)
                                 }
                             } else {
-                                setAlertMessage("Введите телефон или Email")
+                                setAlertMessage("Введите Ваше имя")
                                 setModalActive(true)
                             }
-                        } else {
-                            setAlertMessage("Введите Ваше имя")
-                            setModalActive(true)
                         }
-                    }
 
-                }><span>Клик!</span><span>Отправить</span></button>
-                {/*<button className="custom-btn btn-12" onClick={e => setIsLoad(true)}>*/}
-                {/*    <span>Click!</span><span>Read More</span>*/}
-                {/*</button>*/}
+                    }><span>Клик!</span><span>Отправить</span></button>
+                    {/*<button className="custom-btn btn-12" onClick={e => setIsLoad(true)}>*/}
+                    {/*    <span>Click!</span><span>Read More</span>*/}
+                    {/*</button>*/}
+                </div>
             </div>
+
             <Modal  active={modalActive} setActive={setModalActive}>
                 <h1>{alertMessage}</h1>
             </Modal>

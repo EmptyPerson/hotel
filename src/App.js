@@ -19,11 +19,15 @@ function App() {
         {id: 4, text: 'Бронирование', activeF: false, header: 'booking'},
         {id: 5, text: 'Контакты', activeF: false, header: 'contacts'}
     ])
+    const [isActiveNavbar, setIsActiveNavbar] = useState(false)
+
     return (
         <div className='app'>
             <NavBarContext.Provider value={{
                 ActiveRow,
-                setActiveRow
+                setActiveRow,
+                isActiveNavbar,
+                setIsActiveNavbar
             }}>
                 <BrowserRouter>
                     <Navbar/>

@@ -3,9 +3,9 @@
 :root {
     --navbar-height: 43px;
 }
-.container-navbar {
-    height: 100%;
-}
+/*.container-navbar {*/
+/*    height: 100%;*/
+/*}*/
 .menu-main {
     position: relative;
     list-style: none;
@@ -136,7 +136,7 @@
     right: 20px;
     /*left: 20px; */
     top: 0px;
-    height: 50px;
+    height: 30px;
     width: 50px;
     text-align: center;
     line-height: 50px;
@@ -156,7 +156,6 @@
     content: "";
     position: absolute;
     top: calc(50% - 1px);
-    left: 30%;
     width: 40%;
     border-bottom: 2px solid #000;
     transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
