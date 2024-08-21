@@ -3,9 +3,9 @@
 :root {
     --navbar-height: 43px;
 }
-/*.container-navbar {*/
-/*    height: 100%;*/
-/*}*/
+.container-navbar {
+    min-height: var(--navbar-height);
+}
 .menu-main {
     position: relative;
     list-style: none;
@@ -200,9 +200,12 @@
     transform: rotate(-45deg);
     border-color: #fff;
 }
-
+.container-navbar:after{
+    padding-bottom: 3rem;
+}
 @media screen and (max-width: 1000px) {
     .menu-btn {
         display: block;
     }
+
 }

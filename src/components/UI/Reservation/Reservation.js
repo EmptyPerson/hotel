@@ -109,9 +109,10 @@ const Reservation = () => {
     });
 
     return (
-        <div className='container-reservation' style={isActiveNavbar? {height: "100vh"}: {height: "100%"}}>
+        <div className='container-reservation' >
             <div className='reservation'>
             <div className="wrap-form">
+                <div className="form">
                 <form noValidate>
                 {/*<p className='head-text'>Забронировать</p>*/}
                 <h1>Имя</h1>
@@ -178,6 +179,7 @@ const Reservation = () => {
                 </select>
 
             </form>
+            </div>
                 <div className="send-button">
                     <button className="custom-btn btn-12" onClick={
                         async (e) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import './Rooms.css'
 import Gallery from "../Gallery/Gallery";
-const imgUrls = ['images/room_1.jpg','https://source.unsplash.com/lVmR1YaBGG4/800x600','https://source.unsplash.com/5KvPQc1Uklk/800x600']
-const imgUrlss = ['images/room_1.jpg','https://source.unsplash.com/lVmR1YaBGG4/800x600','https://source.unsplash.com/5KvPQc1Uklk/800x600']
+const imgUrls = ['images/room.jpg','images/room_1.jpg','images/room.jpg']
+const imgUrlss = ['images/room.jpg','images/room_1.jpg','images/room.jpg']
 
 const Rooms = () => {
     return (
